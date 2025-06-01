@@ -1,7 +1,6 @@
 import { publicUrl } from "@/env.mjs";
 import { getTranslations } from "@/i18n/server";
-import AccessoriesImage from "@/images/accessories.jpg";
-import ApparelImage from "@/images/apparel.jpg";
+import StoreConfig from "@/store.config";
 import { CategoryBox } from "@/ui/category-box";
 import { ProductList } from "@/ui/products/product-list";
 import { YnsLink } from "@/ui/yns-link";
@@ -25,7 +24,7 @@ export default async function Home() {
 						<h2 className="text-balance text-3xl font-bold tracking-tight md:text-4xl">{t("hero.title")}</h2>
 						<p className="text-pretty text-neutral-600">{t("hero.description")}</p>
 						<YnsLink
-							className="inline-flex h-10 items-center justify-center rounded-full bg-neutral-900 px-6 font-medium text-neutral-50 transition-colors hover:bg-neutral-900/90 focus:outline-none focus:ring-1 focus:ring-neutral-950"
+							className="inline-flex h-10 items-center justify-center rounded-full bg-neutral-900 px-6 font-medium text-neutral-50 transition-colors hover:bg-neutral-900/90 focus:outline-hidden focus:ring-1 focus:ring-neutral-950"
 							href={t("hero.link")}
 						>
 							{t("hero.action")}
@@ -51,11 +50,8 @@ export default async function Home() {
 
 			<section className="w-full py-8">
 				<div className="grid gap-8 lg:grid-cols-2">
-					{[
-						{ categorySlug: "accessories", src: AccessoriesImage },
-						{ categorySlug: "apparel", src: ApparelImage },
-					].map(({ categorySlug, src }) => (
-						<CategoryBox key={categorySlug} categorySlug={categorySlug} src={src} />
+					{StoreConfig.categories.map(({ slug, image: src }) => (
+						<CategoryBox key={slug} categorySlug={slug} src={src} />
 					))}
 				</div>
 			</section>

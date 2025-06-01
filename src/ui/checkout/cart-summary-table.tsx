@@ -1,9 +1,5 @@
 "use client";
 
-import { useTranslations } from "@/i18n/client";
-import { calculateCartTotalPossiblyWithTax, formatMoney, formatProductName } from "@/lib/utils";
-import { CartAmountWithSpinner, CartItemLineTotal, CartItemQuantity } from "@/ui/checkout/cart-items.client";
-import { FormatDeliveryEstimate } from "@/ui/checkout/shipping-rates-section";
 import {
 	Table,
 	TableBody,
@@ -12,7 +8,11 @@ import {
 	TableHead,
 	TableHeader,
 	TableRow,
-} from "@/ui/shadcn/table";
+} from "@/components/ui/table";
+import { useTranslations } from "@/i18n/client";
+import { calculateCartTotalPossiblyWithTax, formatMoney, formatProductName } from "@/lib/utils";
+import { CartAmountWithSpinner, CartItemLineTotal, CartItemQuantity } from "@/ui/checkout/cart-items.client";
+import { FormatDeliveryEstimate } from "@/ui/checkout/shipping-rates-section";
 import { YnsLink } from "@/ui/yns-link";
 import type * as Commerce from "commerce-kit";
 import Image from "next/image";
@@ -135,7 +135,7 @@ export const CartSummaryTable = ({ cart, locale }: { cart: Commerce.Cart; locale
 						<TableRow key={idx + tax.taxAmount} className="font-normal">
 							<TableCell className="hidden w-24 sm:table-cell"></TableCell>
 							<TableCell colSpan={3} className="text-right">
-								{tax.taxType.toLocaleUpperCase()} {tax.taxPercentage}%
+								{tax.taxType.toString().toLocaleUpperCase()} {tax.taxPercentage}%
 							</TableCell>
 							<TableCell className="text-right">
 								<CartAmountWithSpinner total={tax.taxAmount} currency={currency} locale={locale} />

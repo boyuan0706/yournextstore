@@ -25,12 +25,12 @@ const nextConfig: NextConfig = {
 	transpilePackages: ["next-mdx-remote", "commerce-kit"],
 	experimental: {
 		esmExternals: true,
-		mdxRs: true,
 		scrollRestoration: true,
 		ppr: true,
-		after: true,
-		reactCompiler: true,
 		cpus: 1,
+		reactCompiler: true,
+		mdxRs: true,
+		inlineCss: true,
 	},
 	webpack: (config) => {
 		return {

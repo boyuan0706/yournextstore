@@ -1,19 +1,18 @@
 import { getCartFromCookiesAction } from "@/actions/cart-actions";
+import { Button } from "@/components/ui/button";
 import { getLocale, getTranslations } from "@/i18n/server";
 import { formatMoney, formatProductName } from "@/lib/utils";
-import { Button } from "@/ui/shadcn/button";
 import { YnsLink } from "@/ui/yns-link";
-import * as Commerce from "commerce-kit";
 import { calculateCartTotalNetWithoutShipping } from "commerce-kit";
 import Image from "next/image";
 import { CartAsideContainer } from "./cart-aside";
-import { CartModalAddSideEffect } from "./cart-side-effect";
 
-export default async function CartModalPage(props: { searchParams: Promise<{ add?: string }> }) {
-	const searchParams = await props.searchParams;
+export async function CartModalPage() {
+	// const searchParams = await props.searchParams;
 	const originalCart = await getCartFromCookiesAction();
 	// TODO fix type
-	const cart = await Commerce.cartAddOptimistic({ add: searchParams.add, cart: originalCart! });
+	// const cart = await Commerce.cartAddOptimistic({ add: searchParams.add, cart: originalCart! });
+	const cart = originalCart;
 
 	if (!cart || cart.lines.length === 0) {
 		return null;
@@ -39,7 +38,7 @@ export default async function CartModalPage(props: { searchParams: Promise<{ add
 						{cart.lines.map((line) => (
 							<li
 								key={line.product.id}
-								className="grid grid-cols-[4rem,1fr,max-content] grid-rows-[auto,auto] gap-x-4 gap-y-2 py-6"
+								className="grid grid-cols-[4rem_1fr_max-content] grid-rows-[auto_auto] gap-x-4 gap-y-2 py-6"
 							>
 								{line.product.images[0] ? (
 									<div className="col-span-1 row-span-2 bg-neutral-100">
@@ -93,7 +92,7 @@ export default async function CartModalPage(props: { searchParams: Promise<{ add
 					<YnsLink href="/cart">{t("goToPaymentButton")}</YnsLink>
 				</Button>
 			</div>
-			{searchParams.add && <CartModalAddSideEffect productId={searchParams.add} />}
+			{/* {searchParams.add && <CartModalAddSideEffect productId={searchParams.add} />} } */}
 		</CartAsideContainer>
 	);
 }

@@ -1,7 +1,6 @@
 "use client";
 
-import { CaretSortIcon } from "@radix-ui/react-icons";
-import { Button } from "@ui/shadcn/button";
+import { Button } from "@/components/ui/button";
 import {
 	Command,
 	CommandEmpty,
@@ -9,14 +8,15 @@ import {
 	CommandInput,
 	CommandItem,
 	CommandList,
-} from "@ui/shadcn/command";
-import { Drawer, DrawerContent, DrawerTrigger } from "@ui/shadcn/drawer";
-import { Popover, PopoverContent, PopoverTrigger } from "@ui/shadcn/popover";
+} from "@/components/ui/command";
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { CaretSortIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 
+import { useMediaQuery } from "@/components/ui/hooks/use-media-query";
 import { countries, findMatchingCountry } from "@/lib/countries";
 import { ElWithErrors, type ElWithErrorsProps } from "@/ui/input-errors";
-import { useMediaQuery } from "@/ui/shadcn/hooks/use-media-query";
 
 type ListItem = (typeof countries)[number];
 
@@ -84,7 +84,7 @@ function CountryList({
 		>
 			<CommandInput
 				placeholder="Find country…"
-				className="my-2 h-8 border border-neutral-200 py-0 focus:border-neutral-300 focus:outline-none focus:ring focus:ring-neutral-100"
+				className="my-2 h-8 border border-neutral-200 py-0 focus:border-neutral-300 focus:outline-hidden focus:ring-3 focus:ring-neutral-100"
 			/>
 			<CommandList>
 				<CommandEmpty>No results found.</CommandEmpty>
